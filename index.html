@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nixicon — Build Fast. Launch Real.</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <meta name="description" content="AI-powered no-code platform for African creators. Design fast, launch real with Nixicon.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Top navigation: Fiverr-style with logo, categories, search, actions -->
+    <header class="site-header">
+        <div class="container header-row">
+            <a class="logo" href="#"><img src="images/logo.png" alt="Nixicon" /></a>
+            <nav class="nav-categories" aria-label="Categories">
+                <button class="nav-toggle" aria-expanded="false" aria-controls="mobile-menu">☰</button>
+                <ul class="category-list">
+                    <li><a href="#">Apps</a></li>
+                    <li><a href="#">Websites</a></li>
+                    <li><a href="#">Automation</a></li>
+                    <li><a href="#">Analytics</a></li>
+                    <li><a href="#">AI</a></li>
+                </ul>
+            </nav>
+            <form class="search-bar" role="search">
+                <input type="search" placeholder="Search ideas e.g. fitness app" aria-label="Search" />
+                <button type="submit">Search</button>
+            </form>
+            <div class="header-actions">
+                <a class="link" href="#">Sign in</a>
+                <a class="btn btn-outline" href="#">Become a Creator</a>
+                <a class="btn btn-primary" href="#builder" data-action="open_builder_modal">Start Building</a>
+            </div>
+        </div>
+        <div id="overlay" class="overlay" hidden></div>
+        <div id="mobile-menu" class="mobile-drawer" hidden role="dialog" aria-modal="true" aria-label="Mobile menu">
+            <button class="drawer-close" aria-label="Close menu">×</button>
+            <ul>
+                <li><a href="#">Apps</a></li>
+                <li><a href="#">Websites</a></li>
+                <li><a href="#">Automation</a></li>
+                <li><a href="#">Analytics</a></li>
+                <li><a href="#">AI</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Build fast. Launch real.</h1>
+            <p>From idea to Play Store — design your app in minutes and let Nixicon’s devs make it production-ready.</p>
+            <div class="cta-group">
+                <a class="btn btn-primary" href="#" data-action="open_builder_modal">Start Building</a>
+                <a class="btn btn-ghost" href="#how-it-works">See How It Works</a>
+            </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+            <div class="mockup-card">AI-generated dashboard preview</div>
+        </div>
+        <div class="hero-bg"></div>
+    </section>
+
+    <!-- Sections placeholders to be filled next -->
+    <main>
+        <section class="features" id="features" aria-labelledby="features-title">
+            <div class="container">
+                <h2 id="features-title">What you get</h2>
+                <div class="feature-grid">
+                    <article class="card"><h3>AI Builder</h3><p>Describe your idea and watch it come alive — no coding, just clarity.</p></article>
+                    <article class="card"><h3>Managed Deployment</h3><p>Our expert devs handle backend, hosting, and app store launch for you.</p></article>
+                    <article class="card"><h3>Scale With Ease</h3><p>Upgrade anytime with automations, analytics, and custom integrations.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats" aria-label="Platform stats">
+            <div class="container stats-grid">
+                <div class="stat"><span class="num" data-count="200">0</span><span class="label">Creators empowered</span></div>
+                <div class="stat"><span class="num" data-count="50">0</span><span class="label">Apps deployed</span></div>
+                <div class="stat"><span class="num" data-count="98">0</span><span class="label">Client satisfaction</span></div>
+            </div>
+        </section>
+
+        <section class="how" id="how-it-works">
+            <div class="container timeline">
+                <div class="step"><h4>Step 1: Build</h4><p>AI generates your prototype instantly.</p></div>
+                <div class="step"><h4>Step 2: Customize</h4><p>Fine-tune your design and workflow.</p></div>
+                <div class="step"><h4>Step 3: Deploy</h4><p>Our devs code, connect, and launch your app.</p></div>
+                <div class="step"><h4>Step 4: Scale</h4><p>Monitor, automate, and grow with Nixicon tools.</p></div>
+            </div>
+        </section>
+
+        <section class="testimonials" aria-label="Testimonials">
+            <div class="container carousel">
+                <figure class="t-card"><blockquote>“Nixicon turned my prototype into a live app in days. Real magic!”</blockquote><figcaption>Afia K. — Fashion Entrepreneur</figcaption></figure>
+                <figure class="t-card"><blockquote>“Their dev team handled everything — I just watched my idea become real.”</blockquote><figcaption>David O. — Fitness Coach</figcaption></figure>
+            </div>
+        </section>
+
+        <section class="cta-final">
+            <div class="container cta-inner">
+                <h2>Ready to launch your app?</h2>
+                <p>Build your idea today. Let Nixicon take it live.</p>
+                <a class="btn btn-primary" href="#" data-action="open_builder_modal">Start Building Free</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <div class="logo">Nixicon</div>
+                <p>© 2025 Nixicon Technologies. Built with purpose in Africa.</p>
+            </div>
+            <nav aria-label="Footer">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Templates</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Privacy</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Sign In</h2>
+                <button class="close-btn" onclick="UI.hideModal('login-modal')">×</button>
+            </div>
+            <form id="login-form" class="modal-body">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign In</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="register-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create Account</h2>
+                <button class="close-btn" onclick="UI.hideModal('register-modal')">×</button>
+            </div>
+            <form id="register-form" class="modal-body">
+                <div class="form-group">
+                    <label for="register-name">Full Name</label>
+                    <input type="text" id="register-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Create Account</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Builder Modal -->
+    <div id="builder-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Start Building</h2>
+                <button class="close-btn" onclick="UI.hideModal('builder-modal')">×</button>
+            </div>
+            <form id="builder-form" class="modal-body">
+                <div class="form-group">
+                    <label for="project-title">Project Title</label>
+                    <input type="text" id="project-title" name="title" placeholder="e.g., My Fitness App" required>
+                </div>
+                <div class="form-group">
+                    <label for="project-description">Description</label>
+                    <textarea id="project-description" name="description" placeholder="Describe your app idea..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="project-category">Category</label>
+                    <select id="project-category" name="category" required>
+                        <option value="">Select category</option>
+                        <option value="mobile-app">Mobile App</option>
+                        <option value="web-app">Web App</option>
+                        <option value="website">Website</option>
+                        <option value="automation">Automation</option>
+                        <option value="ai-tool">AI Tool</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Create Project</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard Modal -->
+    <div id="dashboard-modal" class="modal" style="display: none;">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2>My Projects</h2>
+                <button class="close-btn" onclick="UI.hideModal('dashboard-modal')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="dashboard-actions">
+                    <button class="btn btn-primary" onclick="UI.showModal('builder-modal')">New Project</button>
+                </div>
+                <div id="projects-container" class="projects-grid">
+                    <!-- Projects will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Modal -->
+    <div id="project-modal" class="modal" style="display: none;">
+        <div class="modal-content large">
+            <!-- Project details will be loaded here -->
+        </div>
+    </div>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner" class="cookie-banner" style="display: none;">
+        <div class="cookie-content">
+            <div class="cookie-text">
+                <h4>🍪 We use cookies</h4>
+                <p>We use cookies to enhance your experience, analyze site traffic, and personalize content. By clicking "Accept All", you consent to our use of cookies. <a href="/privacy" target="_blank">Learn more</a></p>
+            </div>
+            <div class="cookie-actions">
+                <button id="cookie-accept-all" class="btn btn-primary">Accept All</button>
+                <button id="cookie-accept-necessary" class="btn btn-outline">Necessary Only</button>
+                <button id="cookie-settings" class="btn btn-ghost">Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie Settings Modal -->
+    <div id="cookie-settings-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Cookie Settings</h2>
+                <button class="close-btn" onclick="UI.hideModal('cookie-settings-modal')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="cookie-categories">
+                    <div class="cookie-category">
+                        <div class="category-header">
+                            <h3>Necessary Cookies</h3>
+                            <label class="toggle">
+                                <input type="checkbox" id="necessary-cookies" checked disabled>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <p>These cookies are essential for the website to function properly. They cannot be disabled.</p>
+                    </div>
+                    
+                    <div class="cookie-category">
+                        <div class="category-header">
+                            <h3>Analytics Cookies</h3>
+                            <label class="toggle">
+                                <input type="checkbox" id="analytics-cookies">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <p>These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously.</p>
+                    </div>
+                    
+                    <div class="cookie-category">
+                        <div class="category-header">
+                            <h3>Marketing Cookies</h3>
+                            <label class="toggle">
+                                <input type="checkbox" id="marketing-cookies">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <p>These cookies are used to track visitors across websites to display relevant and engaging advertisements.</p>
+                    </div>
+                    
+                    <div class="cookie-category">
+                        <div class="category-header">
+                            <h3>Functional Cookies</h3>
+                            <label class="toggle">
+                                <input type="checkbox" id="functional-cookies">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <p>These cookies enable enhanced functionality and personalization, such as remembering your preferences.</p>
+                    </div>
+                </div>
+                
+                <div class="cookie-actions">
+                    <button id="save-cookie-preferences" class="btn btn-primary">Save Preferences</button>
+                    <button id="accept-all-cookies" class="btn btn-outline">Accept All</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
+
