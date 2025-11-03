@@ -10,20 +10,27 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script>
+        // Simple test to make sure JavaScript is working
+        console.log('Inline JavaScript loaded');
+        window.addEventListener('load', function() {
+            console.log('Page fully loaded');
+        });
+    </script>
 </head>
 <body>
     <!-- Top navigation: Fiverr-style with logo, categories, search, actions -->
     <header class="site-header">
         <div class="container header-row">
-            <a class="logo" href="#"><img src="images/logo.png" alt="Nixicon" /></a>
+            <a class="logo" href="javascript:void(0)"><img src="images/logo.png" alt="Nixicon" /></a>
             <nav class="nav-categories" aria-label="Categories">
                 <button class="nav-toggle" aria-expanded="false" aria-controls="mobile-menu">☰</button>
                 <ul class="category-list">
-                    <li><a href="#">Apps</a></li>
-                    <li><a href="#">Websites</a></li>
-                    <li><a href="#">Automation</a></li>
-                    <li><a href="#">Analytics</a></li>
-                    <li><a href="#">AI</a></li>
+                    <li><a href="apps.html">Apps</a></li>
+                    <li><a href="websites.html">Websites</a></li>
+                    <li><a href="automation.html">Automation</a></li>
+                    <li><a href="analytics.html">Analytics</a></li>
+                    <li><a href="ai.html">AI</a></li>
                 </ul>
             </nav>
             <form class="search-bar" role="search">
@@ -31,20 +38,20 @@
                 <button type="submit">Search</button>
             </form>
             <div class="header-actions">
-                <a class="link" href="#">Sign in</a>
-                <a class="btn btn-outline" href="#">Become a Creator</a>
-                <a class="btn btn-primary" href="#builder" data-action="open_builder_modal">Start Building</a>
+                <a href="#" class="link" data-modal="login-modal">Sign in</a>
+                <a href="#" class="btn btn-outline" data-modal="register-modal">Become a Creator</a>
+                <a href="#" class="btn btn-primary" data-modal="builder-modal">Start Building</a>
             </div>
         </div>
         <div id="overlay" class="overlay" hidden></div>
         <div id="mobile-menu" class="mobile-drawer" hidden role="dialog" aria-modal="true" aria-label="Mobile menu">
             <button class="drawer-close" aria-label="Close menu">×</button>
             <ul>
-                <li><a href="#">Apps</a></li>
-                <li><a href="#">Websites</a></li>
-                <li><a href="#">Automation</a></li>
-                <li><a href="#">Analytics</a></li>
-                <li><a href="#">AI</a></li>
+                <li><a href="apps.html">Apps</a></li>
+                <li><a href="websites.html">Websites</a></li>
+                <li><a href="automation.html">Automation</a></li>
+                <li><a href="analytics.html">Analytics</a></li>
+                <li><a href="ai.html">AI</a></li>
             </ul>
         </div>
     </header>
@@ -55,8 +62,8 @@
             <h1>Build fast. Launch real.</h1>
             <p>From idea to Play Store — design your app in minutes and let Nixicon’s devs make it production-ready.</p>
             <div class="cta-group">
-                <a class="btn btn-primary" href="#" data-action="open_builder_modal">Start Building</a>
-                <a class="btn btn-ghost" href="#how-it-works">See How It Works</a>
+                <button class="btn btn-primary" data-modal="builder-modal">Start Building</button>
+                <button class="btn btn-ghost" onclick="document.getElementById('how-it-works').scrollIntoView({behavior: 'smooth'})">See How It Works</button>
             </div>
         </div>
         <div class="hero-visual" aria-hidden="true">
@@ -106,7 +113,7 @@
             <div class="container cta-inner">
                 <h2>Ready to launch your app?</h2>
                 <p>Build your idea today. Let Nixicon take it live.</p>
-                <a class="btn btn-primary" href="#" data-action="open_builder_modal">Start Building Free</a>
+                <button class="btn btn-primary" data-modal="builder-modal">Start Building Free</button>
             </div>
         </section>
     </main>
@@ -119,11 +126,11 @@
             </div>
             <nav aria-label="Footer">
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Templates</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Privacy</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="templates.html">Templates</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
                 </ul>
             </nav>
         </div>
@@ -131,7 +138,7 @@
 
     <!-- Modals -->
     <!-- Login Modal -->
-    <div id="login-modal" class="modal" style="display: none;">
+    <div id="login-modal" class="modal" hidden>
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Sign In</h2>
@@ -152,7 +159,7 @@
     </div>
 
     <!-- Register Modal -->
-    <div id="register-modal" class="modal" style="display: none;">
+    <div id="register-modal" class="modal" hidden>
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Create Account</h2>
@@ -177,7 +184,7 @@
     </div>
 
     <!-- Builder Modal -->
-    <div id="builder-modal" class="modal" style="display: none;">
+    <div id="builder-modal" class="modal" hidden>
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Start Building</h2>
@@ -210,7 +217,7 @@
     </div>
 
     <!-- Dashboard Modal -->
-    <div id="dashboard-modal" class="modal" style="display: none;">
+    <div id="dashboard-modal" class="modal" hidden>
         <div class="modal-content large">
             <div class="modal-header">
                 <h2>My Projects</h2>
@@ -228,14 +235,14 @@
     </div>
 
     <!-- Project Modal -->
-    <div id="project-modal" class="modal" style="display: none;">
+    <div id="project-modal" class="modal" hidden>
         <div class="modal-content large">
             <!-- Project details will be loaded here -->
         </div>
     </div>
 
     <!-- Cookie Consent Banner -->
-    <div id="cookie-banner" class="cookie-banner" style="display: none;">
+    <div id="cookie-banner" class="cookie-banner" hidden>
         <div class="cookie-content">
             <div class="cookie-text">
                 <h4>🍪 We use cookies</h4>
@@ -250,7 +257,7 @@
     </div>
 
     <!-- Cookie Settings Modal -->
-    <div id="cookie-settings-modal" class="modal" style="display: none;">
+    <div id="cookie-settings-modal" class="modal" hidden>
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Cookie Settings</h2>
@@ -311,7 +318,14 @@
         </div>
     </div>
 
-    <script src="app.js"></script>
+    <script>
+        // Simple test to make sure JavaScript is working
+        console.log('Inline JavaScript loaded');
+        window.addEventListener('load', function() {
+            console.log('Page fully loaded');
+        });
+    </script>
+    <script src="app.js?v=8"></script>
 </body>
 </html>
 

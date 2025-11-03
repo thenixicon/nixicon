@@ -289,27 +289,150 @@ router.post('/:id/ai-generate', auth, [
       });
     }
 
-    // Simulate AI generation (replace with actual AI service)
-    const mockFeatures = [
-      {
-        name: 'User Authentication',
-        description: 'Secure login and registration system',
-        complexity: 'medium',
-        estimatedHours: 8
-      },
-      {
-        name: 'Dashboard',
-        description: 'Main user interface with data visualization',
-        complexity: 'complex',
-        estimatedHours: 16
-      },
-      {
-        name: 'Settings',
-        description: 'User preferences and configuration',
-        complexity: 'simple',
-        estimatedHours: 4
+    // AI-generated features based on prompt and project category
+    const category = project.category || 'mobile-app';
+    const promptLower = req.body.prompt.toLowerCase();
+    
+    // Generate features based on project type and prompt
+    const generateFeatures = () => {
+      let features = [];
+      
+      // Common features for most projects
+      if (promptLower.includes('user') || promptLower.includes('login') || promptLower.includes('signup')) {
+        features.push({
+          name: 'User Authentication',
+          description: 'Secure sign up, login, and password reset with email verification',
+          complexity: 'medium',
+          estimatedHours: 12
+        });
       }
-    ];
+      
+      if (promptLower.includes('dashboard') || promptLower.includes('home') || promptLower.includes('main')) {
+        features.push({
+          name: 'User Dashboard',
+          description: 'Personalized dashboard with overview, stats, and quick actions',
+          complexity: 'complex',
+          estimatedHours: 20
+        });
+      }
+      
+      if (promptLower.includes('profile') || promptLower.includes('settings')) {
+        features.push({
+          name: 'User Profile & Settings',
+          description: 'Edit profile information, preferences, and app settings',
+          complexity: 'simple',
+          estimatedHours: 8
+        });
+      }
+      
+      // Category-specific features
+      if (category === 'mobile-app' || category === 'web-app') {
+        if (promptLower.includes('notification') || promptLower.includes('alert')) {
+          features.push({
+            name: 'Push Notifications',
+            description: 'Real-time notifications for important updates and events',
+            complexity: 'medium',
+            estimatedHours: 10
+          });
+        }
+        
+        if (promptLower.includes('search') || promptLower.includes('filter')) {
+          features.push({
+            name: 'Search & Filter',
+            description: 'Advanced search with filters and sorting options',
+            complexity: 'medium',
+            estimatedHours: 12
+          });
+        }
+      }
+      
+      if (category === 'e-commerce' || promptLower.includes('cart') || promptLower.includes('checkout')) {
+        features.push({
+          name: 'Shopping Cart',
+          description: 'Add, remove, and manage items in cart with persistence',
+          complexity: 'medium',
+          estimatedHours: 14
+        });
+        
+        features.push({
+          name: 'Checkout & Payment',
+          description: 'Secure payment processing with multiple payment methods',
+          complexity: 'complex',
+          estimatedHours: 24
+        });
+        
+        features.push({
+          name: 'Order Management',
+          description: 'Track orders, view order history, and order details',
+          complexity: 'medium',
+          estimatedHours: 16
+        });
+      }
+      
+      if (promptLower.includes('social') || promptLower.includes('share') || promptLower.includes('comment')) {
+        features.push({
+          name: 'Social Feed',
+          description: 'Interactive feed with posts, comments, and reactions',
+          complexity: 'complex',
+          estimatedHours: 30
+        });
+        
+        features.push({
+          name: 'User Interactions',
+          description: 'Like, comment, share, and follow functionality',
+          complexity: 'medium',
+          estimatedHours: 18
+        });
+      }
+      
+      if (promptLower.includes('messaging') || promptLower.includes('chat')) {
+        features.push({
+          name: 'Real-time Chat',
+          description: 'One-on-one and group messaging with real-time updates',
+          complexity: 'complex',
+          estimatedHours: 28
+        });
+      }
+      
+      if (promptLower.includes('map') || promptLower.includes('location') || promptLower.includes('nearby')) {
+        features.push({
+          name: 'Location Services',
+          description: 'GPS integration, maps, and location-based features',
+          complexity: 'complex',
+          estimatedHours: 22
+        });
+      }
+      
+      if (promptLower.includes('camera') || promptLower.includes('photo') || promptLower.includes('upload')) {
+        features.push({
+          name: 'Media Upload',
+          description: 'Upload and manage photos, videos, and documents',
+          complexity: 'medium',
+          estimatedHours: 16
+        });
+      }
+      
+      // Add notifications if not already added
+      if (features.length === 0) {
+        features.push({
+          name: 'Basic Dashboard',
+          description: 'Overview page with key metrics and recent activity',
+          complexity: 'medium',
+          estimatedHours: 12
+        });
+        
+        features.push({
+          name: 'User Management',
+          description: 'Create, update, and manage user accounts',
+          complexity: 'medium',
+          estimatedHours: 10
+        });
+      }
+      
+      return features;
+    };
+    
+    const mockFeatures = generateFeatures();
 
     project.features = mockFeatures;
     project.aiGenerated = {

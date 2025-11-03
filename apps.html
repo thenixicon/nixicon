@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Apps - Nixicon</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-row">
+            <a class="logo" href="index.html"><img src="images/logo.png" alt="Nixicon" /></a>
+            <nav class="nav-categories" aria-label="Categories">
+                <button class="nav-toggle" aria-expanded="false" aria-controls="mobile-menu">☰</button>
+                <ul class="category-list">
+                    <li><a href="apps.html" class="active">Apps</a></li>
+                    <li><a href="websites.html">Websites</a></li>
+                    <li><a href="automation.html">Automation</a></li>
+                    <li><a href="analytics.html">Analytics</a></li>
+                    <li><a href="ai.html">AI</a></li>
+                </ul>
+            </nav>
+            <form class="search-bar" role="search">
+                <input type="search" placeholder="Search app ideas..." aria-label="Search" />
+                <button type="submit">Search</button>
+            </form>
+            <div class="header-actions">
+                <a class="link" href="#" data-modal="login-modal">Sign in</a>
+                <a class="btn btn-outline" href="#" data-modal="register-modal">Become a Creator</a>
+                <a class="btn btn-primary" href="#" data-modal="builder-modal">Start Building</a>
+            </div>
+        </div>
+    </header>
+
+    <main style="margin-top: 80px; padding: 2rem 0;">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto 3rem;">
+                <h1 style="font-size: 3rem; margin-bottom: 1rem;">Mobile App Development</h1>
+                <p style="font-size: 1.2rem; color: #6b7280;">Transform your ideas into powerful mobile experiences for iOS and Android</p>
+            </div>
+
+            <div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
+                <div class="card" style="cursor: pointer;" onclick="window.location.href='index.html'">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">📱</div>
+                    <h3>Native Mobile Apps</h3>
+                    <p>iOS and Android apps built with React Native or Flutter for optimal performance.</p>
+                </div>
+
+                <div class="card" style="cursor: pointer;" onclick="window.location.href='index.html'">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🛒</div>
+                    <h3>E-Commerce Apps</h3>
+                    <p>Complete shopping experiences with cart, payments, and inventory management.</p>
+                </div>
+
+                <div class="card" style="cursor: pointer;" onclick="window.location.href='index.html'">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🏋️</div>
+                    <h3>Health & Fitness</h3>
+                    <p>Workout tracking, nutrition planning, and community features for active users.</p>
+                </div>
+
+                <div class="card" style="cursor: pointer;" onclick="window.location.href='index.html'">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">💬</div>
+                    <h3>Social & Communication</h3>
+                    <p>Connect users with messaging, feeds, and real-time features.</p>
+                </div>
+
+                <div class="card" style="cursor: pointer;" onclick="window.location.href='index.html'">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">📚</div>
+                    <h3>Education & Learning</h3>
+                    <p>Interactive courses, quizzes, and progress tracking for students.</p>
+                </div>
+
+                <div class="card" style="cursor: pointer;" onclick="window.location.href='index.html'">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🍕</div>
+                    <h3>Food & Delivery</h3>
+                    <p>Restaurant apps with ordering, tracking, and payment integration.</p>
+                </div>
+            </div>
+
+            <div class="card" style="padding: 3rem; background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); color: white; text-align: center;">
+                <h2 style="color: white; margin-bottom: 1rem;">Ready to Build Your Mobile App?</h2>
+                <p style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">From concept to app stores in weeks, not months.</p>
+                <button class="btn" style="background: white; color: var(--color-primary);" onclick="window.location.href='index.html'">Start Building Free</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <div class="logo">Nixicon</div>
+                <p>© 2025 Nixicon Technologies. Built with purpose in Africa.</p>
+            </div>
+            <nav aria-label="Footer">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="templates.html">Templates</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="login-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Sign In</h2>
+                <button class="close-btn" onclick="window.UI.hideModal('login-modal')">×</button>
+            </div>
+            <form id="login-form" class="modal-body">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign In</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="register-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create Account</h2>
+                <button class="close-btn" onclick="window.UI.hideModal('register-modal')">×</button>
+            </div>
+            <form id="register-form" class="modal-body">
+                <div class="form-group">
+                    <label for="register-name">Full Name</label>
+                    <input type="text" id="register-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Create Account</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="builder-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Start Building</h2>
+                <button class="close-btn" onclick="window.UI.hideModal('builder-modal')">×</button>
+            </div>
+            <form id="builder-form" class="modal-body">
+                <div class="form-group">
+                    <label for="project-title">Project Title</label>
+                    <input type="text" id="project-title" name="title" placeholder="e.g., My Fitness App" required>
+                </div>
+                <div class="form-group">
+                    <label for="project-description">Description</label>
+                    <textarea id="project-description" name="description" placeholder="Describe your app idea..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="project-category">Category</label>
+                    <select id="project-category" name="category" required>
+                        <option value="">Select category</option>
+                        <option value="mobile-app">Mobile App</option>
+                        <option value="web-app">Web App</option>
+                        <option value="website">Website</option>
+                        <option value="automation">Automation</option>
+                        <option value="ai-tool">AI Tool</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Create Project</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js?v=3"></script>
+</body>
+</html>
+

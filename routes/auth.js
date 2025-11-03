@@ -1,10 +1,43 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 const { body, validationResult } = require('express-validator');
 const User = require('../models/User');
-const auth = require('../middleware/auth');
+const { auth } = require('../middleware/auth');
+
+// Email service
+let EmailService;
+try {
+  EmailService = require('../utils/email');
+} catch (error) {
+  console.log('Email service not configured:', error.message);
+  EmailService = null;
+}
 
 const router = express.Router();
+
+// Helper function to generate avatar data URL
+const generateAvatarDataUrl = (name, size = 200) => {
+  if (!name) return null;
+  
+  const initials = name.trim().split(' ').length >= 2
+    ? (name.trim().split(' ')[0][0] + name.trim().split(' ').pop()[0]).toUpperCase()
+    : name.trim().substring(0, 2).toUpperCase();
+  
+  const colors = ['#8b5cf6', '#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#6366f1', '#ec4899', '#14b8a6'];
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const color = colors[Math.abs(hash) % colors.length];
+  
+  const svg = `<svg width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">
+    <rect width="${size}" height="${size}" fill="${color}"/>
+    <text x="50%" y="50%" text-anchor="middle" dy=".35em" fill="white" font-size="${size * 0.4}" font-weight="600" font-family="system-ui, -apple-system, sans-serif">${initials}</text>
+  </svg>`;
+  
+  return 'data:image/svg+xml;base64,' + Buffer.from(svg).toString('base64');
+};
 
 // Generate JWT token
 const generateToken = (userId) => {
@@ -40,21 +73,40 @@ router.post('/register', [
       });
     }
 
+    // Generate avatar
+    const avatar = generateAvatarDataUrl(name);
+    
+    // Generate verification token
+    const verificationToken = crypto.randomBytes(32).toString('hex');
+
     // Create new user
     const user = new User({
       name,
       email,
-      password
+      password,
+      avatar,
+      isVerified: false,
+      verificationToken
     });
 
     await user.save();
 
-    // Generate token
+    // Send verification email if email service is configured
+    if (EmailService) {
+      try {
+        await EmailService.sendVerificationEmail(user, verificationToken);
+      } catch (emailError) {
+        console.error('Failed to send verification email:', emailError);
+        // Don't fail registration if email fails
+      }
+    }
+
+    // Generate token (user can log in but will see verification reminder)
     const token = generateToken(user._id);
 
     res.status(201).json({
       success: true,
-      message: 'User registered successfully',
+      message: EmailService ? 'User registered successfully. Please check your email to verify your account.' : 'User registered successfully. Please verify your email to complete setup.',
       data: {
         user,
         token
@@ -237,6 +289,122 @@ router.post('/change-password', auth, [
     });
   } catch (error) {
     console.error('Change password error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Server error'
+    });
+  }
+});
+
+// @route   GET /api/auth/verify-email
+// @desc    Verify user email
+// @access  Public
+router.get('/verify-email', async (req, res) => {
+  try {
+    const { token } = req.query;
+    
+    if (!token) {
+      return res.status(400).json({
+        success: false,
+        message: 'Verification token is required'
+      });
+    }
+
+    // Find user with verification token
+    const user = await User.findOne({ verificationToken: token });
+    
+    if (!user) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid or expired verification token'
+      });
+    }
+
+    // Update user as verified
+    user.isVerified = true;
+    user.verificationToken = undefined;
+    await user.save();
+
+    // Send welcome email
+    if (EmailService) {
+      try {
+        await EmailService.sendWelcomeEmail(user);
+      } catch (emailError) {
+        console.error('Failed to send welcome email:', emailError);
+      }
+    }
+
+    res.json({
+      success: true,
+      message: 'Email verified successfully! You can now use all features.'
+    });
+  } catch (error) {
+    console.error('Email verification error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Server error'
+    });
+  }
+});
+
+// @route   POST /api/auth/resend-verification
+// @desc    Resend verification email
+// @access  Public
+router.post('/resend-verification', [
+  body('email').isEmail().normalizeEmail().withMessage('Valid email is required')
+], async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        success: false,
+        message: 'Validation failed',
+        errors: errors.array()
+      });
+    }
+
+    const { email } = req.body;
+
+    const user = await User.findOne({ email });
+    
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'User not found'
+      });
+    }
+
+    if (user.isVerified) {
+      return res.status(400).json({
+        success: false,
+        message: 'Email is already verified'
+      });
+    }
+
+    // Generate new verification token
+    const verificationToken = crypto.randomBytes(32).toString('hex');
+    user.verificationToken = verificationToken;
+    await user.save();
+
+    // Send verification email
+    if (EmailService) {
+      try {
+        await EmailService.sendVerificationEmail(user, verificationToken);
+      } catch (emailError) {
+        console.error('Failed to send verification email:', emailError);
+        return res.status(500).json({
+          success: false,
+          message: 'Failed to send verification email. Please try again later.'
+        });
+      }
+    }
+
+    res.json({
+      success: true,
+      message: 'Verification email has been sent'
+    });
+  } catch (error) {
+    console.error('Resend verification error:', error);
     res.status(500).json({
       success: false,
       message: 'Server error'
